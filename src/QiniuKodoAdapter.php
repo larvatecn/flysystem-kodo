@@ -94,6 +94,8 @@ class QiniuKodoAdapter implements FilesystemAdapter
     }
 
     /**
+     * 判断文件是否存在
+     *
      * @throws FilesystemException
      * @throws UnableToCheckExistence
      */
@@ -103,6 +105,8 @@ class QiniuKodoAdapter implements FilesystemAdapter
     }
 
     /**
+     * 判断文件夹是否存在
+     *
      * @throws FilesystemException
      * @throws UnableToCheckExistence
      */
