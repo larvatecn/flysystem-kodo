@@ -77,18 +77,16 @@ class QiniuKodoAdapter implements FilesystemAdapter
      * @param Auth $auth
      * @param string $bucket
      * @param string $prefix
-     * @param BucketManager|null $bucketManager
-     * @param UploadManager|null $uploadManager
      * @param VisibilityConverter|null $visibility
      * @param MimeTypeDetector|null $mimeTypeDetector
      * @param array $options
      */
-    public function __construct(Auth $auth, string $bucket, string $prefix = '', BucketManager $bucketManager = null, UploadManager $uploadManager = null, VisibilityConverter $visibility = null, MimeTypeDetector $mimeTypeDetector = null, array $options = [])
+    public function __construct(Auth $auth, string $bucket, string $prefix = '', VisibilityConverter $visibility = null, MimeTypeDetector $mimeTypeDetector = null, array $options = [])
     {
         $this->auth = $auth;
         $this->prefixer = new PathPrefixer($prefix);
-        $this->bucketManager = $bucketManager ?: new BucketManager($this->auth);
-        $this->uploadManager = $uploadManager ?: new UploadManager();
+        $this->bucketManager = new BucketManager($this->auth);
+        $this->uploadManager = new UploadManager();
         $this->bucket = $bucket;
         $this->visibility = $visibility ?: new PortableVisibilityConverter();
         $this->mimeTypeDetector = $mimeTypeDetector ?: new FinfoMimeTypeDetector();
